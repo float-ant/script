@@ -99,8 +99,9 @@ function installV2ray()
     if [ "${logsetting}" = "" ]; then
         sed -i '1a\  "log": {\n    "loglevel": "info",\n    "access": "/var/log/v2ray/access.log",\n    "error": "/var/log/v2ray/error.log"\n  },' /etc/v2ray/config.json
     fi
-    alterid=`shuf -i50-80 -n1`
+    alterid=`57`
     sed -i -e "s/alterId\":.*[0-9]*/alterId\": ${alterid}/" /etc/v2ray/config.json
+    sed -i -e "s/\"id\":.*/\"id\": \"4905e5c4-78bf-4b06-8dd0-e10240b73465\",/g" /etc/v2ray/config.json
     uid=`cat /etc/v2ray/config.json | grep id | cut -d: -f2 | tr -d \",' '`
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     echo "0 3 */3 * * root echo '' > /var/log/v2ray/access.log; echo ''>/var/log/v2ray/error.log" >> /etc/crontab
